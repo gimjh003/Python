@@ -29,11 +29,12 @@ not a and not b?
 0, 0일 경우만 성공.
 a and b?
 1, 1일 경우만 성공.
+
+아까랑 똑같네.
+모두 참이거나, 모두 거짓이거나.
+or로 묶어주자!
+
 (not a and not b) or (a and b)?
-
-더 쉬운 방법.
-
-a == b?
 '''
 a, b = input().split()
 a = int(a)
