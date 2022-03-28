@@ -22,3 +22,7 @@ for i in range(7):
     elif i == 5:pen.pencolor('blue4')
     elif i == 6:pen.pencolor('magenta')
     draw(i)
+
+# 원을 그릴 때 주는 값은 반지름과 호에 해당하는 각도.
+# 2로 나눈 이유는 반지름이기 때문이었구나.
+# goto로 2로 나눈 값을 준 이유도 0,0을 중심으로 하기 위해서였어.
