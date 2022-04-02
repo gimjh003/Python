@@ -9,6 +9,7 @@ while True:
         player = int(input("숫자를 입력하세요 [범위 : 1 ~ 1000] : "))
         if player == com:
             print("헐")
+            tryNo += 1
             break
         elif player < com:
             print("업")
@@ -22,6 +23,7 @@ while True:
         player = int(input("숫자를 입력하세요 [범위 : {} ~ {}] : ".format(min, max)))
         if player == com:
             print("성공")
+            tryNo += 1
             break
         elif player < com:
             print("업")
