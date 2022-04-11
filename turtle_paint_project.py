@@ -90,21 +90,27 @@ def for_init(x, y):
 # 초기화 설정
 def init():
     t.ht()
-    # 화면 초기화 후 색상, 굵기, 옵션 버튼 그리기
     t.clear()
     t.onclick(for_init)
+
+    # 색상 조정 버튼 그리기
     draw_color_opt(button_color_startx, button_color_starty-button_height*0, button_width, button_height, button_color_red)
     draw_color_opt(button_color_startx, button_color_starty-button_height*1, button_width, button_height, button_color_green)
     draw_color_opt(button_color_startx, button_color_starty-button_height*2, button_width, button_height, button_color_blue)
+
+    # 굵기 조정 버튼 그리기
     draw_thick_opt(button_thick_startx, button_thick_starty-button_height*0, thick_lev1, sample_len)
     draw_thick_opt(button_thick_startx, button_thick_starty-button_height*1, thick_lev2, sample_len)
     draw_thick_opt(button_thick_startx, button_thick_starty-button_height*2, thick_lev3, sample_len)
+
+    # 옵션 버튼 그리기
     draw_opt(button_opt_startx, button_opt_starty-button_height*0, button_width, button_height, button_color_opt, "ERASE")
     draw_opt(button_opt_startx, button_opt_starty-button_height*1, button_width, button_height, button_color_opt, "QUIT")
 
 
 # 버튼 확인 함수
 def check_button(x, y):
+
     # 클릭 영역 - 색상
     if (x>=button_color_startx) and (x<=button_color_startx+button_width):
         if (y<=button_color_starty) and (y>=button_color_starty-button_height*1):
@@ -113,6 +119,7 @@ def check_button(x, y):
             t.pencolor(button_color_green)
         elif (y<=button_color_starty) and (y>=button_color_starty-button_height*3):
             t.pencolor(button_color_blue)
+
     # 클릭 영역 - 굵기
     if (x>=button_thick_startx) and (x<=button_thick_startx+button_width):
         if (y<=button_thick_starty) and (y>=button_thick_starty-button_height*1):
@@ -121,12 +128,14 @@ def check_button(x, y):
             t.pensize(thick_lev2)
         elif (y<=button_thick_starty) and (y>=button_thick_starty-button_height*3):
             t.pensize(thick_lev3)
+
     # 클릭 영역 - 옵션
     if (x>=button_opt_startx) and (x<=button_opt_startx+button_width):
         if (y<=button_opt_starty) and (y>=button_opt_starty-button_height*1):
             init()
         elif (y<=button_opt_starty) and (y>=button_opt_starty-button_height*2):
             win.bye()
+            
     # 클릭 영역 - 기본
     else:
         t.penup()
