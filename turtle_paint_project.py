@@ -1,5 +1,4 @@
 import turtle
-import threading
 
 # 윈도우 창 크기 변수
 window_width = 1200
