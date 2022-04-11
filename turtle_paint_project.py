@@ -113,27 +113,27 @@ def check_button(x, y):
 
     # 클릭 영역 - 색상
     if (x>=button_color_startx) and (x<=button_color_startx+button_width):
-        if (y<=button_color_starty) and (y>=button_color_starty-button_height*1):
+        if (y<=button_color_starty-button_height*0) and (y>button_color_starty-button_height*1):
             t.pencolor(button_color_red)
-        elif (y<=button_color_starty) and (y>=button_color_starty-button_height*2):
+        elif (y<=button_color_starty-button_height*1) and (y>button_color_starty-button_height*2):
             t.pencolor(button_color_green)
-        elif (y<=button_color_starty) and (y>=button_color_starty-button_height*3):
+        elif (y<=button_color_starty-button_height*2) and (y>button_color_starty-button_height*3):
             t.pencolor(button_color_blue)
 
     # 클릭 영역 - 굵기
     if (x>=button_thick_startx) and (x<=button_thick_startx+button_width):
-        if (y<=button_thick_starty) and (y>=button_thick_starty-button_height*1):
+        if (y<=button_thick_starty-button_height*0+10) and (y>button_thick_starty-button_height*1+10):
             t.pensize(thick_lev1)
-        elif (y<=button_thick_starty) and (y>=button_thick_starty-button_height*2):
+        elif (y<=button_thick_starty-button_height*1+10) and (y>button_thick_starty-button_height*2+10):
             t.pensize(thick_lev2)
-        elif (y<=button_thick_starty) and (y>=button_thick_starty-button_height*3):
+        elif (y<=button_thick_starty-button_height*2+10) and (y>button_thick_starty-button_height*3+10):
             t.pensize(thick_lev3)
 
     # 클릭 영역 - 옵션
     if (x>=button_opt_startx) and (x<=button_opt_startx+button_width):
-        if (y<=button_opt_starty) and (y>=button_opt_starty-button_height*1):
+        if (y<=button_opt_starty) and (y>button_opt_starty-button_height*1):
             init()
-        elif (y<=button_opt_starty) and (y>=button_opt_starty-button_height*2):
+        elif (y<=button_opt_starty) and (y>button_opt_starty-button_height*2):
             win.bye()
             
     # 클릭 영역 - 기본
