@@ -148,15 +148,11 @@ def pen_draw_start(x, y):
     t.pendown()
     t.goto(x, y)
 
-# 그리기 종료
-def pen_draw_end(x, y):
-    t.penup()
-
 # 초기화 후 클릭 이벤트 동작 설정
 init()
 win.onclick(check_button)
 t.ondrag(pen_draw_start)
-t.onrelease(pen_draw_end)
+t.onrelease(t.penup)
 
 # 입력 기다리기
 win.mainloop()
