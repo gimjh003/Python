@@ -38,9 +38,6 @@ win = turtle.Screen()
 t = turtle.Turtle()
 win.setup(window_width, window_height)
 win.title('My first paint')
-win.addshape('pen_mk3.gif')
-t.shape('pen_mk3.gif')
-t.turtlesize(40, 40)
 t.speed(1000)
 
 # 버튼 형태 그리기
@@ -93,6 +90,7 @@ def init():
     global init_process
     init_process = 1
     t.clear()
+    t.ht()
     t.setheading(0)
 
     # 색상 조정 버튼 그리기
@@ -143,27 +141,21 @@ def check_button(x, y):
             
     # 클릭 영역 - 기본
     else:
-        t.penup()
-
-# 마우스 따라다니기
-def pen_follow(event):
-    if init_process == 0:
-        x, y = event.x, event.y
-        t.goto(x-win.window_width()/2, -y+win.window_height()/2)
-
-canvas = turtle.getcanvas()
-canvas.bind("<Motion>", pen_follow)
+        if init_process==0:
+            t.penup()
+            t.goto(x, y)
+            t.st()
 
 # 그리기 시작
 def pen_draw_start(x, y):
+    if init_process==0:
+        t.goto(x, y)
         t.pendown()
-        print(t.pos())
 
 # 그리기 종료
 def pen_draw_end(x, y):
+    if init_process==0:
         t.penup()
-        t.goto(x, y)
-        print(t.pos())
 
 # 초기화 후 클릭 이벤트 동작 설정
 init()
