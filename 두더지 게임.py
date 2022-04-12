@@ -31,7 +31,26 @@ def check_minute():
     thread = threading.Timer(1, check_minute)
     if time<60:
         thread.start()
-
+    else:
+        try:
+            scores = []
+            scores.append(count)
+            with open('leaderboard.txt', 'r', encoding="utf8") as file:
+                file.readline()
+                leaderboard = file.readlines()
+                for score in leaderboard:
+                    point = int(score.split()[1])
+                    scores.append(point)
+                scores.sort()
+                scores.reverse()
+            with open('leaderboard.txt', 'w', encoding="utf8") as file:
+                file.write("최고 기록\n")
+                for i in range(len(scores)):
+                    file.write(f"{i+1}. {scores[i]} 마리 / 1분\n")
+                    
+        except Exception:
+            with open('leaderboard.txt', 'w', encoding="utf8") as file:
+                file.write(f"최고 기록\n1. {count} 마리 / 1분\n")
 thread = threading.Thread(target=check_minute)
 thread.start()
 
