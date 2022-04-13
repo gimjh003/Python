@@ -26,3 +26,5 @@ def binary_search(start, end):
         return binary_search(start, mid-1)
     else:
         return binary_search(mid+1, end)
+    
+pos = binary_search(0, len(t))
