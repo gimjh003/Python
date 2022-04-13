@@ -68,6 +68,27 @@ def find_max(a):
 
 x = int(input("첫 번째 수 : "))
 y = int(input("두 번째 수 : "))
+start = time.time()
 c = intersection(factorization(x), factorization(y))
-gcd = find_max(c)
+gcd = find_max(c) # greatest common divisor
+print("일반적인 방법 소요시간 :", time.time()-start)
 print("최대공약수 :", gcd)
+
+# 유클리드 호제법 (정수론 배우기)
+
+# 1. get x, y (x > y)
+# 2. if y == 0, then GCD ← x and exit
+# 3. r ← x % y
+# 4. x ← y
+# 5. y ← r
+# 6. goto step 2
+
+x = int(input("첫 번째 수 : "))
+y = int(input("두 번째 수 : "))
+start = time.time()
+while y != 0:
+    r = x%y
+    x = y
+    y = r
+print("유클리드 호제법 소요시간 :", time.time()-start)
+print("최대공약수 :", x)
