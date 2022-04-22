@@ -8,7 +8,7 @@ while user_num!=rand_num:
     print("행운의 숫자 : {0}, 선택한 숫자 : {1}, 현재 운 수치 : {2}".format(rand_num, user_num, user_luck))
     rand_num = random.randint(1, 100)
     time.sleep(2)
-print("행운의 숫자와 선택한 숫자 {0}이 일치합니다.\n현재 운 수치 : {1}\n---결과---")
+print("행운의 숫자와 선택한 숫자 {0}이 일치합니다.\n현재 운 수치 : {1}\n---결과---".format(user_num, user_luck))
 if user_luck==100:
     print("완벽한 날")
 elif user_luck>=90:
