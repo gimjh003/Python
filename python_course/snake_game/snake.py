@@ -7,12 +7,20 @@ class Snake():
         self.segments = []
         self.create_snake()
         self.head = self.segments[0]
+        
     def create_snake(self):
         for _ in range(3):
-            self.segments.append(Turtle("square"))
-            self.segments[_].color("white")
-            self.segments[_].penup()
-            self.segments[_].goto(0-20*_, 0)
+            self.add_segment((0-20*_, 0))
+    
+    def add_segment(self, position):
+        self.segments.append(Turtle("square"))
+        self.segments[-1].color("white")
+        self.segments[-1].penup()
+        self.segments[-1].goto(position)
+   
+    def extend(self):
+        self.add_segment(self.segments[-1].pos())
+
     def move(self):
         """Snake move forward"""
         for segment in range(len(self.segments)-1, 0, -1):
