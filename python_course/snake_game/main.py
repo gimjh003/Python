@@ -36,7 +36,7 @@ while game:
             game = False
             scoreboard.game_over()
     if x >= 290 or x <= -290 or y >= 290 or y <= -290:
-        game = False
-        scoreboard.game_over()
+        snake.reset()
+        scoreboard.reset()
 
 win.exitonclick()
