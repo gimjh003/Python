@@ -19,6 +19,9 @@ checked = []
 while correct != 50:
     answer = win.textinput(title=f"{correct}/50 States Correct", prompt="What's another state name?").title()
     if answer == "Exit":
+        missed = [state for state in states if state not in checked]
+        states_to_learn = pandas.DataFrame(missed)
+        states_to_learn.to_csv("python_course/USA_game/us-states-game-start/states_to_learn.csv")
         break
     if answer in states and answer not in checked:
         checked.append(answer)
@@ -26,18 +29,5 @@ while correct != 50:
         info = data[data["state"]==answer]
         pen.goto(int(info.x), int(info.y))
         pen.write(answer, align="center")
-
-missed = []
-for state in states:
-    if state not in checked:
-        missed.append(state)
-
-states_to_learn = pandas.DataFrame({
-    "Missed":missed
-})
-
-print(states_to_learn)
-
-states_to_learn.to_csv("python_course/USA_game/us-states-game-start/states_to_learn.csv")
 
 win.mainloop()
