@@ -2,6 +2,7 @@ import tkinter
 from tkinter import messagebox
 import random
 import pyperclip
+import json
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_pwd():
     letters = [_ for _ in list(range(65, 91))+list(range(97, 123))]
@@ -29,9 +30,33 @@ def add_pwd_data():
     if option:
         website_entry.delete(0, tkinter.END)
         password_entry.delete(0, tkinter.END)
-        with open("python_course/Password_Manager/TOP-SECRET.txt", "a") as file:
-            file.write(f"{website}\t|\t{email}\t|\t{password}\n")
+        new_data = {website:{
+            "email":email,
+            "password":password,
+        }}
+        try:
+            with open("python_course/Password_Manager/TOP-SECRET.json", "r") as file:
+                data = json.load(file)
+                data.update(new_data)
+        except FileNotFoundError:
+            data = new_data
+        with open("python_course/Password_Manager/TOP-SECRET.json", "w") as file:
+            json.dump(data, file, indent=4)
         messagebox.showinfo(title="Password Manager", message="Password added successfully.")
+# ---------------------------- LOAD PASSWORD ------------------------------- #
+def load_pwd_data():
+    website = website_entry.get()
+    try:
+        with open("python_course/Password_Manager/TOP-SECRET.json", "r") as file:
+            data = json.load(file)
+    except FileNotFoundError:
+        messagebox.showerror(title="Error", message="No Data File Found.")
+        return
+    item = data.get(website)
+    if item:
+        messagebox.showinfo(title=website, message=f"Email/Username : {item['email']}\nPassword : {item['password']}")
+    else:
+        messagebox.showinfo(title=website, message="No details for the website exists.")
 # ---------------------------- UI SETUP ------------------------------- #
 window = tkinter.Tk()
 window.title("Password Manager")
@@ -44,9 +69,10 @@ canvas.grid(row=0, column=1)
 
 website_label = tkinter.Label(text="Website : ")
 website_label.grid(row=1, column=0)
-website_entry = tkinter.Entry(width=44)
-website_entry.focus()
-website_entry.grid(row=1, column=1, columnspan=2, sticky="w")
+website_entry = tkinter.Entry(width=27)
+website_entry.grid(row=1, column=1, sticky="w")
+website_load = tkinter.Button(text="Load password", command=load_pwd_data, width=15)
+website_load.grid(row=1, column=2, sticky="w")
 
 email_label = tkinter.Label(text="Email/Username : ")
 email_label.grid(row=2, column=0)
